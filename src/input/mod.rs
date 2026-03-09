@@ -30,8 +30,8 @@ pub fn default_bindings() -> Vec<KeyBinding> {
         KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::N), action: "toggle_dnd".into() },
         KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::C), action: "clear_history".into() },
         KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::F), action: "filter_by_app".into() },
-        // Note: '/' key — awase Key enum doesn't have Slash yet,
-        // so search is bound at the runtime dispatch layer only.
+        // Search
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::Slash), action: "search".into() },
         KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::R), action: "mark_read".into() },
         KeyBinding { hotkey: Hotkey::new(AwaseMods::SHIFT, AwaseKey::R), action: "mark_all_read".into() },
         KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::Q), action: "quit".into() },
