@@ -3,6 +3,7 @@ mod daemon;
 mod filter;
 mod history;
 mod input;
+mod mcp;
 mod notification;
 mod platform;
 mod render;
@@ -65,6 +66,8 @@ enum Command {
     },
     /// Show daemon status.
     Status,
+    /// Start the MCP server (stdio transport).
+    Mcp,
     /// Search notification history.
     Search {
         /// Search query.
@@ -197,6 +200,16 @@ fn main() {
             } else {
                 search_history_direct(&config, &query);
             }
+        }
+
+        Some(Command::Mcp) => {
+            let rt = tokio::runtime::Runtime::new().expect("failed to create tokio runtime");
+            rt.block_on(async {
+                if let Err(e) = mcp::run(config).await {
+                    tracing::error!("MCP server error: {e}");
+                    std::process::exit(1);
+                }
+            });
         }
 
         None => {

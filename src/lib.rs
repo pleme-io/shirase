@@ -9,6 +9,7 @@ pub mod daemon;
 pub mod filter;
 pub mod history;
 pub mod input;
+pub mod mcp;
 pub mod notification;
 pub mod platform;
 pub mod render;
