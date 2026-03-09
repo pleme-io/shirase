@@ -7,6 +7,7 @@ mod mcp;
 mod notification;
 mod platform;
 mod render;
+mod scripting;
 
 use std::path::PathBuf;
 

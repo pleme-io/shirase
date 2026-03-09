@@ -2,8 +2,43 @@
 //!
 //! Defines input modes (Normal, History, Search, Command) and key bindings
 //! for navigating the notification center.
+//!
+//! Key binding definitions use awase types for platform-agnostic hotkey
+//! representation and serializable binding configuration.
 
+use awase::{Hotkey, Key as AwaseKey, Modifiers as AwaseMods};
 use uuid::Uuid;
+
+/// A keybinding definition: an awase `Hotkey` paired with an action name.
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct KeyBinding {
+    /// The hotkey that triggers this binding (awase type).
+    pub hotkey: Hotkey,
+    /// The action name to perform.
+    pub action: String,
+}
+
+/// Default keybindings using awase `Hotkey` types.
+#[must_use]
+pub fn default_bindings() -> Vec<KeyBinding> {
+    vec![
+        // Normal mode
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::J), action: "move_down".into() },
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::K), action: "move_up".into() },
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::D), action: "dismiss".into() },
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::SHIFT, AwaseKey::D), action: "dismiss_all".into() },
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::N), action: "toggle_dnd".into() },
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::C), action: "clear_history".into() },
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::F), action: "filter_by_app".into() },
+        // Note: '/' key — awase Key enum doesn't have Slash yet,
+        // so search is bound at the runtime dispatch layer only.
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::R), action: "mark_read".into() },
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::SHIFT, AwaseKey::R), action: "mark_all_read".into() },
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::NONE, AwaseKey::Q), action: "quit".into() },
+        // Ctrl+C
+        KeyBinding { hotkey: Hotkey::new(AwaseMods::CTRL, AwaseKey::C), action: "quit".into() },
+    ]
+}
 
 /// Input mode for the notification center.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -260,6 +295,22 @@ impl UiState {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn default_bindings_are_valid() {
+        let bindings = default_bindings();
+        assert!(!bindings.is_empty());
+        let has_quit = bindings.iter().any(|b| b.action == "quit");
+        assert!(has_quit, "should have a quit binding");
+    }
+
+    #[test]
+    fn bindings_are_serializable() {
+        let bindings = default_bindings();
+        let json = serde_json::to_string(&bindings).unwrap();
+        let deserialized: Vec<KeyBinding> = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized.len(), bindings.len());
+    }
 
     #[test]
     fn normal_mode_keys() {

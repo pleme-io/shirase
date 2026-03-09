@@ -13,3 +13,4 @@ pub mod mcp;
 pub mod notification;
 pub mod platform;
 pub mod render;
+pub mod scripting;

@@ -25,6 +25,8 @@ shikumi = { git = "ssh://git@github.com/pleme-io/shikumi" }
 tsuuchi = { git = "ssh://git@github.com/pleme-io/tsuuchi" }
 tsunagu = { git = "ssh://git@github.com/pleme-io/tsunagu" }
 kaname = { git = "https://github.com/pleme-io/kaname" }
+soushi = { git = "https://github.com/pleme-io/soushi" }
+awase = { git = "https://github.com/pleme-io/awase" }
 schemars = "1"
 arc-swap = "1.8"
 clap = { version = "4", features = ["derive"] }
