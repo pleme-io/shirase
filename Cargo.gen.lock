@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "cargo_lock_sha256": "776171efbe7a24874eb444f877369fde4bd75f06f4187a91a50a29334d91d61e",
+  "cargo_lock_sha256": "d0914276477fb19a28aa69a0ce764086a2ac108db32877335667c43046d5caad",
   "target_resolves": {
     "base": {
       "ahash-0.8.12": {
@@ -6519,10 +6519,10 @@
     }
   },
   "git_nar_sha256": {
-    "awase-0.1.0": "sha256-LXxbkkpFv6HS0aqfJvAAMcVTO4vanHwtK8OTEwOcV2k=",
-    "kaname-0.1.1": "sha256-f1+hrwX7akaGg9J1mdDFkmTrkVqnUa9CyiV9WrzvVIQ=",
+    "awase-0.1.0": "sha256-mRQjfLuuyGsbrss6wiacxweAnoAzOjHUG7c1NZgRqSc=",
+    "kaname-0.1.1": "sha256-OJH5rES++f/TXD/0fiD/Zz/ndOY3geXLwT2s/UW9i9g=",
     "shikumi-0.1.0": "sha256-UmY3tJS/QBfCSFl4FqXO+0p1xm9qSX983/4tXsw4nwU=",
-    "soushi-0.1.1": "sha256-4cSbOJOVEU1aKFqSwnXMBsJB9CFaVK89E9S+ch/OZZ4=",
+    "soushi-0.1.1": "sha256-ieKkSwFIcxV9LAD8A3NsPLly1nPrJeE8nQHzpG740yw=",
     "tsunagu-0.1.0": "sha256-CKmU/xfMFC5EbIvIbIcDv8X8Zd+b9e2/IZGUyxdmcCI=",
     "tsuuchi-0.1.0": "sha256-x7AolPKL/Xt1vC6Fc/nJ5Em81KdKYt+v7eIMeBuk/OQ="
   },
